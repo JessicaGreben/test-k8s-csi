@@ -1,0 +1,84 @@
+syntax = "proto3";
+option go_package = "pb";
+
+package node;
+
+// todo: make sure there is not more than one call in flight for a volume at a time
+// ref: https://github.com/container-storage-interface/spec/blob/master/spec.md#concurrency
+service Node {
+  // necessary
+  rpc NodePublishVolume (NodePublishVolumeRequest)
+    returns (NodePublishVolumeResponse) {}
+
+  rpc NodeUnpublishVolume (NodeUnpublishVolumeRequest)
+    returns (NodeUnpublishVolumeResponse) {}
+
+  rpc NodeGetCapabilities (NodeGetCapabilitiesRequest)
+  returns (NodeGetCapabilitiesResponse) {}
+
+  // optional
+  // rpc NodeStageVolume (NodeStageVolumeRequest)
+  //   returns (NodeStageVolumeResponse) {}
+
+  // rpc NodeUnstageVolume (NodeUnstageVolumeRequest)
+  //   returns (NodeUnstageVolumeResponse) {}
+
+  // rpc NodeGetVolumeStats (NodeGetVolumeStatsRequest)
+  //   returns (NodeGetVolumeStatsResponse) {}
+
+  // rpc NodeExpandVolume(NodeExpandVolumeRequest)
+  //   returns (NodeExpandVolumeResponse) {}
+  
+  // rpc NodeGetInfo (NodeGetInfoRequest)
+  //   returns (NodeGetInfoResponse) {}
+}
+
+message NodePublishVolumeRequest {
+}
+
+message NodePublishVolumeResponse {
+}
+
+message NodeUnpublishVolumeRequest {
+}
+
+message NodeUnpublishVolumeResponse {
+}
+
+message NodeGetCapabilitiesRequest {
+}
+
+message NodeGetCapabilitiesResponse {
+}
+
+
+// optional
+// message NodeStageVolumeRequest {
+// }
+
+// message NodeStageVolumeResponse {
+// }
+
+// message NodeUnstageVolumeRequest {
+// }
+
+// message NodeUnstageVolumeResponse {
+// }
+
+// message NodeGetVolumeStatsRequest {
+// }
+
+// message NodeGetVolumeStatsResponse {
+// }
+
+// message NodeExpandVolumeRequest {
+// }
+
+// message NodeExpandVolumeResponse {
+// }
+
+// message NodeGetInfoRequest {
+// }
+
+// message NodeGetInfoResponse {
+// }

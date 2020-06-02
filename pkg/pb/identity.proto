@@ -1,0 +1,66 @@
+syntax = "proto3";
+option go_package = "pb";
+
+package identity;
+
+import "google/protobuf/wrappers.proto";
+
+service Identity {
+    rpc GetPluginInfo(GetPluginInfoRequest) 
+        returns (GetPluginInfoResponse) {}
+
+    rpc GetPluginCapabilities(GetPluginCapabilitiesRequest) 
+        returns (GetPluginCapabilitiesResponse) {}
+
+    rpc Probe (ProbeRequest)
+        returns (ProbeResponse) {}
+}
+
+message GetPluginInfoRequest {
+}
+
+message GetPluginInfoResponse {
+    string name = 1;
+    string vendor_version = 2;
+}
+
+message GetPluginCapabilitiesRequest {
+}
+
+message GetPluginCapabilitiesResponse {
+    // All the capabilities that the controller service supports.
+    repeated PluginCapability capabilities = 1;
+}
+
+message ProbeRequest {
+}
+
+message ProbeResponse {
+    .google.protobuf.BoolValue ready = 1;
+  }
+
+// Specifies a capability of the plugin.
+message PluginCapability {
+    message Service {
+      enum Type {
+        UNKNOWN = 0;
+        CONTROLLER_SERVICE = 1;
+        VOLUME_ACCESSIBILITY_CONSTRAINTS = 2;
+      }
+      Type type = 1;
+    }
+  
+    message VolumeExpansion {
+      enum Type {
+        UNKNOWN = 0;
+        ONLINE = 1;
+        OFFLINE = 2;
+      }
+      Type type = 1;
+    }
+  
+    oneof type {
+      Service service = 1;
+      VolumeExpansion volume_expansion = 2;
+    }
+  }
